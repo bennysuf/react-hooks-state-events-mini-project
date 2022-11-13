@@ -1,17 +1,18 @@
 import React from "react";
 import Task from "./Task";
-import {v4 as uuid} from "uuid";
+import { v4 as uuid } from "uuid";
 
-function TaskList({ task, onCategory, handleDelete }) {
-  
-  if (onCategory !== "All" && task) {
-    task = task.filter(t => t.category === onCategory);
+function TaskList({ tasks, onCategory, handleDelete }) {
+  if (onCategory && onCategory !== "All") {
+    tasks = tasks.filter((t) => t.category === onCategory);
   }
 
   return (
     <div className="tasks">
       <ul>
-       {task && task.map((tasks) => <Task key={uuid()} task={tasks}  handleDelete={handleDelete} /> )}
+        {tasks.map((task) => (
+          <Task key={uuid()} {...task} handleDelete={handleDelete} />
+        ))}
       </ul>
     </div>
   );
@@ -19,5 +20,4 @@ function TaskList({ task, onCategory, handleDelete }) {
 
 export default TaskList;
 
-
-//connect CategoryFilter to Task or TaskList and filter to post only if that class is selected 
+//connect CategoryFilter to Task or TaskList and filter to post only if that class is selected

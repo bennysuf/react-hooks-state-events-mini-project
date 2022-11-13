@@ -5,7 +5,7 @@ function Task({ text, category, handleDelete }) {
 // console.log(task) 
 
   function handleClick(){
-    handleDelete(task)
+    handleDelete({text, category})
   }
 
   return (
